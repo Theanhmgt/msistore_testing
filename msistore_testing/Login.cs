@@ -32,7 +32,7 @@ namespace msistore_testing
             passwordInput.SendKeys("Theanh28");
             signInBTN.Click();
 
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
 
             string current_url = driver.Url;
             string home_url = baseUrl + "/";
@@ -51,7 +51,7 @@ namespace msistore_testing
             passwordInput.SendKeys("Theanh28");
             signInBTN.Click();
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
             IWebElement alert = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div[1]/div/div[4]/div/div/div[1]/div[2]")));
 
 
