@@ -4,7 +4,8 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 namespace msistore_testing
 {
     [TestClass]
@@ -16,10 +17,11 @@ namespace msistore_testing
         public void setUp()
         {
             driver = new ChromeDriver();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             baseUrl = "http://localhost:3000";
         }
         [TestMethod]
-        public void TC1_1()
+        public void TC3_2_1_1()
         {
             driver.Navigate().GoToUrl(baseUrl + "/login");
             IWebElement usernameInput = driver.FindElement(By.CssSelector("input[name='username']"));
@@ -30,11 +32,30 @@ namespace msistore_testing
             passwordInput.SendKeys("Theanh28");
             signInBTN.Click();
 
-            Thread.Sleep(4000);
+            Thread.Sleep(2000);
 
             string current_url = driver.Url;
             string home_url = baseUrl + "/";
             Assert.AreEqual(home_url,current_url);
+        }
+
+        [TestMethod]
+        public void TC3_2_1_2()
+        {
+            driver.Navigate().GoToUrl(baseUrl + "/login");
+            IWebElement usernameInput = driver.FindElement(By.CssSelector("input[name='username']"));
+            IWebElement passwordInput = driver.FindElement(By.CssSelector("input[name='password']"));
+            IWebElement signInBTN = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[1]/form/div[3]/button"));
+
+            usernameInput.SendKeys("aaaaaaaaa");
+            passwordInput.SendKeys("Theanh28");
+            signInBTN.Click();
+
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            IWebElement alert = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div[1]/div/div[4]/div/div/div[1]/div[2]")));
+
+
+            Assert.AreEqual("Account not found", alert.Text);
         }
 
         [TestCleanup] 
