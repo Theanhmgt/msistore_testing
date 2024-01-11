@@ -73,7 +73,25 @@ namespace msistore_testing
 
             Assert.AreEqual("Current password is incorrect", alert.Text);
         }
+        [TestMethod]
+        public void TC3_2_3_4()
+        {
+            IWebElement changePassworBtn = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[2]/div[1]/div[3]/span[2]"));
+            changePassworBtn.Click();
+            Thread.Sleep(1000);
 
+            IWebElement currentUserInput = driver.FindElement(By.CssSelector("input[name='old_password']"));
+            IWebElement newUserInput = driver.FindElement(By.CssSelector("input[name='new_password']"));
+            IWebElement saveBtn = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[2]/div[1]/div[3]/span[2]"));
+            currentUserInput.SendKeys("");
+            newUserInput.SendKeys("Theanh30");
+
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
+            IWebElement alert = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[2]/div[1]/div[2]/form/div[1]/span")));
+
+
+            Assert.AreEqual("Password should be 8-20 characters and include at least 1 number", alert.Text);
+        }
         [TestCleanup]
         public void TestDown()
         {
