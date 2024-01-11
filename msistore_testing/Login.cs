@@ -57,6 +57,20 @@ namespace msistore_testing
 
             Assert.AreEqual("Account not found", alert.Text);
         }
+        [TestMethod]
+        public void TC3_2_1_3()
+        {
+            driver.Navigate().GoToUrl(baseUrl + "/login");
+            IWebElement usernameInput = driver.FindElement(By.CssSelector("input[name='username']"));
+            IWebElement passwordInput = driver.FindElement(By.CssSelector("input[name='password']"));
+
+            usernameInput.SendKeys("a");
+            passwordInput.SendKeys("Theanh28");
+
+            IWebElement alert = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[1]/form/div[1]/span"));
+
+            Assert.AreEqual("Username should be 3-16 characters and shouldn't include any special character!", alert.Text);
+        }
 
         [TestCleanup] 
         public void TestDown()
