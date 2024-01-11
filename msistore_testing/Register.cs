@@ -63,7 +63,19 @@ namespace msistore_testing
 
             Assert.AreEqual("Username should be 3-16 characters and shouldn't include any special character!", alert.Text);
         }
+        [TestMethod]
+        public void TC3_2_2_3()
+        {
+            driver.Navigate().GoToUrl(baseUrl + "/register");
+            IWebElement usernameInput = driver.FindElement(By.CssSelector("input[name='username']"));
+            IWebElement passwordInput = driver.FindElement(By.CssSelector("input[name='password']"));
 
+            passwordInput.SendKeys("a");
+            usernameInput.SendKeys("Theanh28");
+            IWebElement alert = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div/form/div[5]/span"));
+
+            Assert.AreEqual("Password should be 8-20 characters and include at least 1 number", alert.Text);
+        }
         [TestCleanup] 
         public void TestDown()
         {

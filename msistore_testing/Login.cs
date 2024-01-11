@@ -67,7 +67,7 @@ namespace msistore_testing
             usernameInput.SendKeys("a");
             passwordInput.SendKeys("Theanh28");
 
-            IWebElement alert = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[1]/form/div[1]/span"));
+            IWebElement alert = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div/form/div[5]/span"));
 
             Assert.AreEqual("Username should be 3-16 characters and shouldn't include any special character!", alert.Text);
         }
