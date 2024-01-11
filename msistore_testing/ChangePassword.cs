@@ -26,7 +26,7 @@ namespace msistore_testing
             IWebElement signInBTN = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[1]/form/div[3]/button"));
 
             usernameInput.SendKeys("theanh5");
-            passwordInput.SendKeys("Theanh28");
+            passwordInput.SendKeys("Theanh30");
             signInBTN.Click();
 
             Thread.Sleep(4000);
@@ -52,7 +52,28 @@ namespace msistore_testing
 
             Assert.AreEqual("Changed password successlly", alert.Text);
         }
-        
+
+        [TestMethod]
+        public void TC3_2_3_2()
+        {
+            IWebElement changePassworBtn = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[2]/div[1]/div[3]/span[2]"));
+            changePassworBtn.Click();
+            Thread.Sleep(1000);
+
+            IWebElement currentUserInput = driver.FindElement(By.CssSelector("input[name='old_password']"));
+            IWebElement newUserInput = driver.FindElement(By.CssSelector("input[name='new_password']"));
+            IWebElement saveBtn = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[2]/div[1]/div[3]/span[2]"));
+            currentUserInput.SendKeys("Password000");
+            newUserInput.SendKeys("Theanh30");
+            saveBtn.Click();
+
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
+            IWebElement alert = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div[1]/div/div[4]/div/div/div[1]")));
+
+
+            Assert.AreEqual("Current password is incorrect", alert.Text);
+        }
+
         [TestCleanup]
         public void TestDown()
         {
