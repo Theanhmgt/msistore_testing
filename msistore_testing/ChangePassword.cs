@@ -13,6 +13,7 @@ namespace msistore_testing
     {
         private IWebDriver driver;
         private string baseUrl;
+        IWebElement usernameInput, passwordInput, signInBTN;
         [TestInitialize]
         public void setUp()
         {
@@ -21,20 +22,23 @@ namespace msistore_testing
             baseUrl = "http://localhost:3000";
 
             driver.Navigate().GoToUrl(baseUrl + "/login");
-            IWebElement usernameInput = driver.FindElement(By.CssSelector("input[name='username']"));
-            IWebElement passwordInput = driver.FindElement(By.CssSelector("input[name='password']"));
-            IWebElement signInBTN = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[1]/form/div[3]/button"));
+            usernameInput = driver.FindElement(By.CssSelector("input[name='username']"));
+            passwordInput = driver.FindElement(By.CssSelector("input[name='password']"));
+            signInBTN = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[1]/form/div[3]/button"));
 
-            usernameInput.SendKeys("theanh5");
-            passwordInput.SendKeys("Theanh30");
-            signInBTN.Click();
-
-            Thread.Sleep(4000);
-            driver.Navigate().GoToUrl(baseUrl + "/dashboard");
+            
         }
         [TestMethod]
         public void TC3_2_3_1()
         {
+            usernameInput.SendKeys("theanh5");
+            passwordInput.SendKeys("Theanh28");
+            signInBTN.Click();
+
+            Thread.Sleep(3000);
+            driver.Navigate().GoToUrl(baseUrl + "/dashboard");
+
+
             IWebElement changePassworBtn = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[2]/div[1]/div[3]/span[2]"));
             changePassworBtn.Click();
             Thread.Sleep(1000);
@@ -56,6 +60,14 @@ namespace msistore_testing
         [TestMethod]
         public void TC3_2_3_2()
         {
+
+            usernameInput.SendKeys("theanh5");
+            passwordInput.SendKeys("Theanh30");
+            signInBTN.Click();
+
+            Thread.Sleep(3000);
+            driver.Navigate().GoToUrl(baseUrl + "/dashboard");
+
             IWebElement changePassworBtn = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[2]/div[1]/div[3]/span[2]"));
             changePassworBtn.Click();
             Thread.Sleep(1000);
@@ -74,8 +86,16 @@ namespace msistore_testing
             Assert.AreEqual("Current password is incorrect", alert.Text);
         }
         [TestMethod]
-        public void TC3_2_3_4()
+        public void TC3_2_3_3()
         {
+
+            usernameInput.SendKeys("theanh5");
+            passwordInput.SendKeys("Theanh30");
+            signInBTN.Click();
+
+            Thread.Sleep(3000);
+            driver.Navigate().GoToUrl(baseUrl + "/dashboard");
+
             IWebElement changePassworBtn = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[2]/div[1]/div[3]/span[2]"));
             changePassworBtn.Click();
             Thread.Sleep(1000);

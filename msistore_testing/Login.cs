@@ -17,7 +17,6 @@ namespace msistore_testing
         public void setUp()
         {
             driver = new ChromeDriver();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             baseUrl = "http://localhost:3000";
         }
         [TestMethod]
@@ -28,7 +27,7 @@ namespace msistore_testing
             IWebElement passwordInput = driver.FindElement(By.CssSelector("input[name='password']"));
             IWebElement signInBTN = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[1]/form/div[3]/button"));
 
-            usernameInput.SendKeys("theanh5");
+            usernameInput.SendKeys("theanh1");
             passwordInput.SendKeys("Theanh28");
             signInBTN.Click();
 
@@ -67,7 +66,7 @@ namespace msistore_testing
             usernameInput.SendKeys("a");
             passwordInput.SendKeys("Theanh28");
 
-            IWebElement alert = driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div/form/div[5]/span"));
+            IWebElement alert =driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[1]/form/div[1]/span"));
 
             Assert.AreEqual("Username should be 3-16 characters and shouldn't include any special character!", alert.Text);
         }

@@ -41,11 +41,10 @@ namespace msistore_testing
             avatarInput.SendKeys("C:\\Users\\Admin\\Pictures\\Personal\\selenium.png");
             signInBTN.Click();
 
-            Thread.Sleep(6000);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
+            IWebElement alert = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div[1]/div/div[4]/div/div/div[1]/div[2]")));
 
-            string current_url = driver.Url;
-            string home_url = baseUrl + "/";
-            Assert.AreEqual(home_url,current_url);
+            Assert.AreEqual("Register successfully, redirecting to homepage", alert.Text);
         }
         [TestMethod]
         public void TC3_2_2_2()
@@ -99,9 +98,10 @@ namespace msistore_testing
             avatarInput.SendKeys("C:\\Users\\Admin\\Pictures\\Personal\\dkmh.pdf");
 
             signInBTN.Click();
-            Thread.Sleep(2000);
 
-            IWebElement alert = driver.FindElement(By.XPath("/html/body/div[1]/div/div[4]/div/div/div[1]/div[2]"));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
+            IWebElement alert = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div[1]/div/div[4]/div/div/div[1]/div[2]")));
+
             Assert.AreEqual("Invalid file type", alert.Text);
         }
         [TestMethod]
@@ -126,9 +126,10 @@ namespace msistore_testing
             avatarInput.SendKeys("C:\\Users\\Admin\\Pictures\\Personal\\selenium.png");
 
             signInBTN.Click();
-            Thread.Sleep(2000);
 
-            IWebElement alert = driver.FindElement(By.XPath("/html/body/div[1]/div/div[4]/div/div/div[1]/div[2]"));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(4));
+            IWebElement alert = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div[1]/div/div[4]/div/div/div[1]/div[2]")));
+
             Assert.AreEqual("Account already exists", alert.Text);
         }
         [TestCleanup]
