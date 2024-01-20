@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Threading;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using static System.Net.WebRequestMethods;
+
 namespace msistore_testing
 {
     [TestClass]
@@ -18,6 +20,7 @@ namespace msistore_testing
         {
             driver = new ChromeDriver();
             baseUrl = "http://localhost:3000";
+            //baseUrl = "https://msistore.vercel.app";
         }
         [TestMethod]
         public void TC3_2_2_1()

@@ -20,6 +20,8 @@ namespace msistore_testing
             driver = new ChromeDriver();
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             baseUrl = "http://localhost:3000";
+            //baseUrl = "https://msistore.vercel.app";
+
 
             driver.Navigate().GoToUrl(baseUrl + "/login");
             usernameInput = driver.FindElement(By.CssSelector("input[name='username']"));

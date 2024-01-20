@@ -18,6 +18,8 @@ namespace msistore_testing
         {
             driver = new ChromeDriver();
             baseUrl = "http://localhost:3000";
+            //baseUrl = "https://msistore.vercel.app";
+
         }
         [TestMethod]
         public void TC3_2_1_1()
